@@ -26,6 +26,7 @@ spec:
         argocd-image-updater.argoproj.io/write-back-repository: https://github.com/evogene1/test-argocd.git
         argocd-image-updater.argoproj.io/git_creds: secret:argocd/git-token-secret
         argocd-image-updater.argoproj.io/git-branch: main
+        argocd-image-updater.argoproj.io/node-red.ignore-differences: "true"
     spec:
       project: default # Можна створити окремий проект "dev-project"
       source:
@@ -40,3 +41,8 @@ spec:
           selfHeal: false
         syncOptions:
           - CreateNamespace=true
+      ignoreDifferences:
+        - group: argoproj.io
+          kind: Application
+          jsonPointers:
+            - /spec/syncPolicy/automated
