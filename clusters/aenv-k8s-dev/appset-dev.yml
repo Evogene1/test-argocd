@@ -27,7 +27,7 @@ spec:
       source:
         repoURL: 'https://github.com/evogene1/test-argocd.git'
         targetRevision: HEAD
-        path: '{{path.directory}}' # Це автоматично підставить шлях до знайденої папки
+        path: '{{path.path}}' # Це автоматично підставить шлях до знайденої папки
       destination:
         server: 'https://kubernetes.default.svc'
       syncPolicy:
