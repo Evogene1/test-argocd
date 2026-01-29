@@ -10,7 +10,7 @@ spec:
         revision: HEAD
         # Argo буде шукати кожну папку в overlays/dev/
         directories:
-          - path: apps/overlays/dev/*
+          - path: "apps/overlays/dev/*/updater-config.json"
   template:
     metadata:
       # Назва картки буде будуватися динамічно, наприклад: dev-node-red
