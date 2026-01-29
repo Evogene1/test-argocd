@@ -19,7 +19,7 @@ spec:
         env: dev
         project: services # Тут ви можете додавати свої теги
       annotations:
-        argocd-image-updater.argoproj.io/image-list: "{{path.basename}}={{image}}"
+        argocd-image-updater.argoproj.io/image-list: "{{image}}"
         argocd-image-updater.argoproj.io/{{path.basename}}.update-strategy: "{{strategy}}"
         argocd-image-updater.argoproj.io/write-back-method: "{{writeback}}"
     spec:
@@ -27,7 +27,7 @@ spec:
       source:
         repoURL: 'https://github.com/evogene1/test-argocd.git'
         targetRevision: HEAD
-        path: '{{path.path}}' # Це автоматично підставить шлях до знайденої папки
+        path: '{{appPath}}' # Це автоматично підставить шлях до знайденої папки
       destination:
         server: 'https://kubernetes.default.svc'
       syncPolicy:

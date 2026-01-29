@@ -1,5 +1,6 @@
 {
-  "image": "nodered/node-red",
+  "appPath": "apps/overlays/dev/node-red",
+  "image": "node-red=nodered/node-red",
   "strategy": "latest",
   "writeback": "git"
 }
