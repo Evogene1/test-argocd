@@ -1,0 +1,5 @@
+{
+  "image": "nodered/node-red",
+  "strategy": "latest",
+  "writeback": "git"
+}

@@ -18,6 +18,11 @@ spec:
       labels:
         env: dev
         project: services # Тут ви можете додавати свої теги
+      annotations:
+        # Дані підставляються з твого JSON файлу автоматично
+        argocd-image-updater.argoproj.io/image-list: "image={{image}}"
+        argocd-image-updater.argoproj.io/my-image.update-strategy: "{{strategy}}"
+        argocd-image-updater.argoproj.io/write-back-method: "{{writeback}}"
     spec:
       project: default # Можна створити окремий проект "dev-project"
       source:
