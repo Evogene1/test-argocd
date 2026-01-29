@@ -9,5 +9,5 @@ spec:
   selector:
     app: node-red
   ports:
-    - port: 8080
+    - port: 1880
       targetPort: 1880

@@ -3,12 +3,11 @@ kind: Ingress
 metadata:
   name: node-red
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/use-forwarded-headers: "true"
+    traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
-  ingressClassName: nginx-private
+  ingressClassName: traefik
   rules:
-    - host: node-red.dev.fora.lan
+    - host: node-red.dev.lan
       http:
         paths:
           - path: /
@@ -17,4 +16,4 @@ spec:
               service:
                 name: node-red
                 port:
-                  number: 8080
+                  number: 1880
