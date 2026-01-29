@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-app
+  namespace: f9
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-app
+  template:
+    metadata:
+      labels:
+        app: test-app
+    spec:
+      containers:
+      - name: test-app
+        image: registryfora.azurecr.io/f9/test-app:dev-1.0.3 # {"$imagepolicy": "flux-system:test-app-policy"}
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: base-app-config
