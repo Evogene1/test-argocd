@@ -9,7 +9,7 @@ spec:
         repoURL: 'https://github.com/evogene1/test-argocd.git'
         revision: HEAD
         # Argo буде шукати кожну папку в overlays/dev/
-        directories:
+        files:
           - path: "apps/overlays/dev/*/updater-config.json"
   template:
     metadata:
