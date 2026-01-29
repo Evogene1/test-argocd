@@ -2,6 +2,6 @@
   "appPath": "apps/overlays/dev/node-red",
   "image": "node-red=nodered/node-red",
   "strategy": "semver",
-  "constraint": "4.1.0",
+  "constraint": "<4.1.1",
   "writeback": "git"
 }
