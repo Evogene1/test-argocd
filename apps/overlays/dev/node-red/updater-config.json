@@ -1,6 +1,7 @@
 {
   "appPath": "apps/overlays/dev/node-red",
   "image": "node-red=nodered/node-red",
-  "strategy": "latest",
+  "strategy": "semver",
+  "allow-tags": ">=4.1.0",
   "writeback": "git"
 }

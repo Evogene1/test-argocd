@@ -21,7 +21,10 @@ spec:
       annotations:
         argocd-image-updater.argoproj.io/image-list: "{{image}}"
         argocd-image-updater.argoproj.io/{{path.basename}}.update-strategy: "{{strategy}}"
+        argocd-image-updater.argoproj.io/{{path.basename}}.allow-tags: "{{allow-tags}}"
         argocd-image-updater.argoproj.io/write-back-method: "{{writeback}}"
+        argocd-image-updater.argoproj.io/write-back-repository: https://github.com/evogene1/test-argocd.git
+        argocd-image-updater.argoproj.io/git_creds: secret:argocd/git-token-secret
     spec:
       project: default # Можна створити окремий проект "dev-project"
       source:
