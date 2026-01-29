@@ -25,7 +25,7 @@ spec:
         argocd-image-updater.argoproj.io/write-back-method: "{{writeback}}"
         argocd-image-updater.argoproj.io/write-back-repository: https://github.com/evogene1/test-argocd.git
         argocd-image-updater.argoproj.io/git_creds: secret:argocd/git-token-secret
-        argocd-image-updater.argoproj.io/{{path.basename}}.git-branch: main
+        argocd-image-updater.argoproj.io/git-branch: main
     spec:
       project: default # Можна створити окремий проект "dev-project"
       source:
