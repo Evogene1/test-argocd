@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dev-infrastructure
+  namespace: argocd
+  labels:
+    type: infrastructure
+    env: dev
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/evogene1/test-argocd.git'
+    targetRevision: HEAD
+    path: infrastructure/overlays/dev # Вказуємо на оверлей інфраструктури
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: argocd # Або спеціальний неймспейс, наприклад 'monitoring'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

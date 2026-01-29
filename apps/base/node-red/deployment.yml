@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: node-red
-        image: nodered/node-red:4.1.3 # {"$imagepolicy": "flux-system:node-red-policy"}
+        image: nodered/node-red:4.1.3
         imagePullPolicy: Always
         ports:
         - containerPort: 1880

@@ -4,8 +4,8 @@ kind: Kustomization
 namespace: service
 
 resources:
-  - ../../base/node-red
-#  - ../../base/test-app
-
-commonLabels:
-  env: dev
+  - ../../../base/node-red
+labels:
+  - includeSelectors: true
+    pairs:
+      env: dev
