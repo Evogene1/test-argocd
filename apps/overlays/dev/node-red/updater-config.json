@@ -1,7 +1,5 @@
 {
-  "annotations": {
-    "argocd-image-updater.argoproj.io/image-list": "node-red-img=nodered/node-red",
-    "argocd-image-updater.argoproj.io/node-red-img.update-strategy": "latest",
-    "argocd-image-updater.argoproj.io/write-back-method": "git"
-  }
+  "image": "nodered/node-red",
+  "strategy": "latest",
+  "writeback": "git"
 }
