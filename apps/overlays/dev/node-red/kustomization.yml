@@ -5,6 +5,12 @@ namespace: service
 
 resources:
   - ../../../base/node-red
+
+commonAnnotations:
+  argocd-image-updater.argoproj.io/image-list: node-red-img=nodered/node-red
+  argocd-image-updater.argoproj.io/node-red-img.update-strategy: latest # для твоїх тегів 4.1.4-22
+  argocd-image-updater.argoproj.io/write-back-method: git
+
 labels:
   - includeSelectors: true
     pairs:
