@@ -3,4 +3,3 @@ kind: Kustomization
 
 resources:     #підключаємо маніфести що в infra/base
   - global-config.yaml
-  - argocd-cm.yml
