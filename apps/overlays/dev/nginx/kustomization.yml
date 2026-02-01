@@ -4,4 +4,4 @@ kind: Kustomization
 namespace: service
 
 resources:
-  - ../../../base/node-red
+  - ../../../base/nginx
