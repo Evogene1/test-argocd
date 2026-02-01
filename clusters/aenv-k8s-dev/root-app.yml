@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/Evogene1/test-argocd.git
-    targetRevision: HEAD
+    targetRevision: main
     path: clusters/aenv-k8s-dev # Указывает на твой бутстрап
   destination:
     server: https://kubernetes.default.svc
