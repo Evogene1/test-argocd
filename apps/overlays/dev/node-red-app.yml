@@ -29,6 +29,6 @@ spec:
   syncPolicy:
     automated:
       prune: true
-      selfHeal: true # Позволяет Argo исправлять ручные правки в кластере
+      selfHeal: false # Позволяет Argo исправлять ручные правки в кластере
     syncOptions:
       - CreateNamespace=true
