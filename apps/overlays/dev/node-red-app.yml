@@ -15,7 +15,7 @@ spec:
     path: apps/overlays/dev/node-red
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: dev-namespace
+    namespace: service
   syncPolicy:
     automated:
       prune: true
