@@ -7,13 +7,12 @@ resources:
   - ../../../base/node-red
   
 commonAnnotations:
-  argocd-image-updater.argoproj.io/image-list: "my-image=index.docker.io/myorg/node-red"
-  argocd-image-updater.argoproj.io/my-image.update-strategy: semver
+  # Використовуємо офіційний шлях nodered/node-red
+  argocd-image-updater.argoproj.io/image-list: "nodered=docker.io/nodered/node-red"
+  argocd-image-updater.argoproj.io/nodered.update-strategy: semver
   argocd-image-updater.argoproj.io/write-back-method: argocd
-  # Если нужно игнорировать определенные теги:
-  # argocd-image-updater.argoproj.io/my-image.ignore-tags: "latest,.*-debug"
 
 images:
-  - name: index.docker.io/myorg/node-red
-    newName: index.docker.io/myorg/node-red
-    newTag: 1.0.0 # Начальный тег
+  - name: docker.io/nodered/node-red
+    newName: docker.io/nodered/node-red
+    newTag: 4.0.0 # Поточна стабільна версія (або вкажіть потрібну)
