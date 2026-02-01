@@ -1,16 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root-dev
+  name: root-apps-dev
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/Evogene1/test-argocd.git
+    repoURL: 'https://github.com/Evogene1/test-argocd.git'
     targetRevision: main
-    path: clusters/aenv-k8s-dev # Указывает на твой бутстрап
+    path: apps/overlays/dev  # Указываем папку, где лежат *.yml файлы Application
   destination:
-    server: https://kubernetes.default.svc
+    server: 'https://kubernetes.default.svc'
     namespace: argocd
   syncPolicy:
     automated:

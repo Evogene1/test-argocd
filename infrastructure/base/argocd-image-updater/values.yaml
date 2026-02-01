@@ -1,0 +1,10 @@
+config:
+  # Настройка по умолчанию, если в аннотациях не указано иное
+  default-update-strategy: semver
+  # Чтобы Updater не лез в приложения, где нет его аннотаций
+  applications_filter: "metadata.annotations['argocd-image-updater.argoproj.io/image-list'] != null"
+  registries:
+    - name: Docker Hub
+      api_url: https://registry-1.docker.io
+      prefix: docker.io
+      ping: yes

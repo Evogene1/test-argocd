@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dev-node-red
+  namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: my-alias=node-red/node-red
+    argocd-image-updater.argoproj.io/my-alias.update-strategy: semver
+    argocd-image-updater.argoproj.io/write-back-method: kubernetes
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/Evogene1/test-argocd.git'
+    targetRevision: main
+    path: apps/overlays/dev/node-red
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: dev-namespace
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    # РЕШЕНИЕ ДЛЯ ROLLBACK:
+    # При ручном вмешательстве (rollback) Argo CD сам переведет sync в статус Manual,
+    # если обнаружит расхождение, которое он не может разрешить автоматически.
+    syncOptions:
+      - CreateNamespace=true
+      - AllowEmpty=false
