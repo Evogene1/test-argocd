@@ -8,3 +8,6 @@ config:
       api_url: https://registry-1.docker.io
       prefix: docker.io
       ping: yes
+  data:
+    argocd.namespaces: "argocd" # Где лежат сами объекты Application
+    log.level: "debug"
