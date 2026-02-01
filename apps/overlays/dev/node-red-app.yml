@@ -4,17 +4,19 @@ metadata:
   name: dev-node-red
   namespace: argocd
   annotations:
-    # 1. Список образов и стратегия
     argocd-image-updater.argoproj.io/image-list: my-alias=nodered/node-red
     argocd-image-updater.argoproj.io/my-alias.update-strategy: semver
     argocd-image-updater.argoproj.io/my-alias.allow-tags: |
       regexp: ^4\.\d+\.\d+$
-
-    # 2. Настройка записи в Git (Исправлено)
+    
+    # ИСПРАВЛЕНИЕ ТУТ:
     argocd-image-updater.argoproj.io/write-back-method: git
-    # Добавлен префикс git: перед secret:
     argocd-image-updater.argoproj.io/write-back-repository: git:secret:argocd/git-creds
     argocd-image-updater.argoproj.io/git-branch: main
+    
+    # ВАЖНО ДЛЯ KUSTOMIZE:
+    # Эта аннотация связывает алиас с конкретным образом в манифестах
+    argocd-image-updater.argoproj.io/my-alias.force-update: "true"
 spec:
   project: default
   source:
