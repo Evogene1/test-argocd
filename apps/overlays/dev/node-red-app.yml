@@ -4,11 +4,17 @@ metadata:
   name: dev-node-red
   namespace: argocd
   annotations:
+    # 1. Список образов и стратегия
     argocd-image-updater.argoproj.io/image-list: my-alias=nodered/node-red
     argocd-image-updater.argoproj.io/my-alias.update-strategy: semver
-    argocd-image-updater.argoproj.io/write-back-method: kubernetes
     argocd-image-updater.argoproj.io/my-alias.allow-tags: |
-  regexp: ^4\.\d+\.\d+$
+      regexp: ^4\.\d+\.\d+$
+
+    # 2. Настройка записи в Git (Исправлено)
+    argocd-image-updater.argoproj.io/write-back-method: git
+    # Добавлен префикс git: перед secret:
+    argocd-image-updater.argoproj.io/write-back-repository: git:secret:argocd/git-creds
+    argocd-image-updater.argoproj.io/git-branch: main
 spec:
   project: default
   source:
@@ -21,10 +27,6 @@ spec:
   syncPolicy:
     automated:
       prune: true
-      selfHeal: true
-    # РЕШЕНИЕ ДЛЯ ROLLBACK:
-    # При ручном вмешательстве (rollback) Argo CD сам переведет sync в статус Manual,
-    # если обнаружит расхождение, которое он не может разрешить автоматически.
+      selfHeal: true # Позволяет Argo исправлять ручные правки в кластере
     syncOptions:
       - CreateNamespace=true
-      - AllowEmpty=false
