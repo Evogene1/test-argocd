@@ -7,6 +7,8 @@ metadata:
     argocd-image-updater.argoproj.io/image-list: my-alias=nodered/node-red
     argocd-image-updater.argoproj.io/my-alias.update-strategy: semver
     argocd-image-updater.argoproj.io/write-back-method: kubernetes
+    argocd-image-updater.argoproj.io/my-alias.allow-tags: |
+  regexp: ^4\.\d+\.\d+$
 spec:
   project: default
   source:
