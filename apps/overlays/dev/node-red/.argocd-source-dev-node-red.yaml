@@ -1,3 +1,0 @@
-kustomize:
-  images:
-  - nodered/node-red:4.1.4

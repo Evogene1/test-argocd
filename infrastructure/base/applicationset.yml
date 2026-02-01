@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: microservices
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/Evogene1/test-argocd.git # Твой репозиторий
+        revision: HEAD
+        directories:
+          - path: apps/overlays/placeholder/* # Это будет заменено патчем
+  template:
+    metadata:
+      name: '{{path.basename}}' # Имя будет дополнено префиксом через патч
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/Evogene1/test-argocd.git
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{path.basename}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

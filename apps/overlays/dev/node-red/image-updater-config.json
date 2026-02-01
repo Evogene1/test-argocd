@@ -1,0 +1,5 @@
+{
+  "argocd-image-updater.argoproj.io/image-list": "my-image=index.docker.io/myorg/node-red",
+  "argocd-image-updater.argoproj.io/my-image.update-strategy": "semver",
+  "argocd-image-updater.argoproj.io/my-image.allow-tags": "regexp:^[0-9]+\\.[0-9]+\\.[0-9]+$"
+}

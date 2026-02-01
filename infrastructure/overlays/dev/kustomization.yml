@@ -1,5 +1,17 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-resources:             #підключаємо kastomization що в свою чергу підключає маніфести :)
+resources:
   - ../../base
+
+patches:
+  - target:
+      kind: ApplicationSet
+      name: microservices
+    patch: |-
+      - op: replace
+        path: /spec/generators/0/git/directories/0/path
+        value: apps/overlays/dev/*
+      - op: replace
+        path: /spec/template/metadata/name
+        value: "dev-{{path.basename}}"

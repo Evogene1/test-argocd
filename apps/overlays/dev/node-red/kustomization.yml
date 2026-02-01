@@ -6,7 +6,14 @@ namespace: service
 resources:
   - ../../../base/node-red
   
-labels:
-  - includeSelectors: true
-    pairs:
-      env: dev
+commonAnnotations:
+  argocd-image-updater.argoproj.io/image-list: "my-image=index.docker.io/myorg/node-red"
+  argocd-image-updater.argoproj.io/my-image.update-strategy: semver
+  argocd-image-updater.argoproj.io/write-back-method: argocd
+  # Если нужно игнорировать определенные теги:
+  # argocd-image-updater.argoproj.io/my-image.ignore-tags: "latest,.*-debug"
+
+images:
+  - name: index.docker.io/myorg/node-red
+    newName: index.docker.io/myorg/node-red
+    newTag: 1.0.0 # Начальный тег
