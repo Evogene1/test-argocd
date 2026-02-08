@@ -4,7 +4,7 @@ metadata:
   name: dev-test-app
   namespace: argocd
   annotations:
-    argocd-image-updater.argoproj.io/image-list: test-app=gen921/hw07
+    argocd-image-updater.argoproj.io/image-list: gen921/hw07
     argocd-image-updater.argoproj.io/test-app.update-strategy: semver
     argocd-image-updater.argoproj.io/test-app.allow-tags: |
       regexp: ^1\.\d+\.\d+$
