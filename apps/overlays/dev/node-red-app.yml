@@ -22,7 +22,7 @@ spec:
   source:
     repoURL: 'https://github.com/Evogene1/test-argocd.git'
     targetRevision: main
-    path: apps/overlays/dev/node-red
+    path: apps/base/node-red
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: service
