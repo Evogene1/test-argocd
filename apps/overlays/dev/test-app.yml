@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dev-test-app
+  namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: test-app=gen921/hw07
+    argocd-image-updater.argoproj.io/test-app.update-strategy: semver
+    argocd-image-updater.argoproj.io/test-app.allow-tags: |
+      regexp: ^1\.\d+\.\d+$
+    
+    # ИСПРАВЛЕНИЕ ТУТ:
+    argocd-image-updater.argoproj.io/write-back-method: git
+    argocd-image-updater.argoproj.io/write-back-repository: git:secret:argocd/git-creds
+    argocd-image-updater.argoproj.io/git-branch: main
+    
+    # ВАЖНО ДЛЯ KUSTOMIZE:
+    # Эта аннотация связывает алиас с конкретным образом в манифестах
+    argocd-image-updater.argoproj.io/test-app.force-update: "true"
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/Evogene1/test-argocd.git'
+    targetRevision: main
+    path: apps/base/test-app
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: service
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false # Позволяет Argo исправлять ручные правки в кластере
+    syncOptions:
+      - CreateNamespace=true
