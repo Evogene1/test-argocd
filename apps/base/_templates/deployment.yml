@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: %argo.name%
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: %argo.name%
+  template:
+    metadata:
+      labels:
+        app: %argo.name%
+    spec:
+      containers:
+      - name: %argo.name%
+        image: gen921/%argo.image%:%argo.version%
+        imagePullPolicy: Always
+        ports:
+        - containerPort: %argo.containerPort%
+#---VOLUME_MOUNTS_PLACEHOLDER---#
+#---VOLUMES_PLACEHOLDER---#
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: %argo.name%
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+spec:
+  type: ClusterIP
+  selector:
+    app: %argo.name%
+  ports:
+    - port: %argo.servicePort%
+      targetPort: %argo.containerPort%
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: %argo.name%
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: %argo.hostname%
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: %argo.name%
+                port:
+                  number: %argo.servicePort%
